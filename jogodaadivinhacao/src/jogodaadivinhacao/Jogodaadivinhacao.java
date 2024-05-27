@@ -1,21 +1,57 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jogodaadivinhacao;
 
-/**
- *
- * @author aluno.saolucas
- */
+import java.util.Random;
+import java.util.Scanner;
+
 public class Jogodaadivinhacao {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            Random random = new Random();
+            int vitorias = 0;
+            int derrotas = 0;
+            
+            System.out.println("Bem-vindo ao Jogo de Adivinhação!");
+            
+            boolean jogarNovamente = true;
+            while (jogarNovamente) {
+                int numeroSecreto = random.nextInt(10) + 1;
+                int tentativas = 0;
+                boolean acertou = false;
+                
+                System.out.println("Um número entre 1 e 10 foi sorteado. Tente adivinhar!");
+                
+                while (!acertou) {
+                    System.out.print("Digite seu palpite: ");
+                    int palpite = scanner.nextInt();
+                    tentativas++;
+                    
+                    if (palpite == numeroSecreto) {
+                        acertou = true;
+                        System.out.println("Parabéns! Você acertou o número em " + tentativas + " tentativas.");
+                        vitorias++;
+                    } else if (palpite < numeroSecreto) {
+                        System.out.println("O número secreto é maior que o seu palpite.");
+                    } else {
+                        System.out.println("O número secreto é menor que o seu palpite.");
+                    }
+                }
+                
+                System.out.print("Deseja jogar novamente? (s/n): ");
+                String resposta = scanner.next();
+                if (!resposta.equalsIgnoreCase("s")) {
+                    jogarNovamente = false;
+                    System.out.println("Fim do jogo. Você venceu " + vitorias + " vezes e errou " + derrotas + " vezes.");
+                } else {
+                    System.out.println("Nova rodada!");
+                }
+            }
+        }
+    }
+}
+
     }
     
 }
