@@ -8,10 +8,14 @@ public class Jogodaadivinhacao {
     public static void main(String[] args) {
 
         
-        try (Scanner scanner = new Scanner(System.in)) {
+     try (Scanner scanner = new Scanner(System.in)) {
             Random random = new Random();
             int vitorias = 0;
             int derrotas = 0;
+            
+            
+            System.out.print("Qual é o seu nome? ");
+            String nomedojogador= scanner.nextLine();
             
             System.out.println("Bem-vindo ao Jogo de Adivinhação!");
             
@@ -50,8 +54,4 @@ public class Jogodaadivinhacao {
             }
         }
     }
-}
-
-    }
-    
 }
